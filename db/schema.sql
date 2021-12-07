@@ -66,7 +66,7 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.tokens (
     user_id integer,
-    token character varying(32)
+    token character varying(64)
 );
 
 

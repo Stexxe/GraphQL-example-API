@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/99designs/gqlgen v0.14.0
+	github.com/google/uuid v1.3.0
 	github.com/joho/godotenv v1.4.0
 	github.com/uptrace/bun v1.0.19
 	github.com/uptrace/bun/dialect/pgdialect v1.0.19

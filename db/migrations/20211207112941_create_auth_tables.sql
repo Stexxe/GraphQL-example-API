@@ -9,7 +9,7 @@ CREATE INDEX idx_code ON codes(code);
 
 CREATE TABLE tokens (
     user_id INTEGER,
-    token VARCHAR (32),
+    token varchar(64),
     CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id)
 );
 

@@ -6,6 +6,7 @@ package graph
 import (
 	"context"
 	"fmt"
+	"github.com/google/uuid"
 	"graphql/graph/generated"
 	"graphql/graph/model"
 	"math/rand"
@@ -14,6 +15,10 @@ import (
 )
 
 func (r *mutationResolver) RequestSignInCode(ctx context.Context, input model.RequestSignInCodeInput) (*model.ErrorPayload, error) {
+	if input.Phone == "" {
+		return &model.ErrorPayload{Message: "Phone should not be empty"}, nil
+	}
+
 	var userId int64
 	err := r.DB.NewSelect().
 		Column("id").
@@ -44,7 +49,44 @@ func (r *mutationResolver) RequestSignInCode(ctx context.Context, input model.Re
 }
 
 func (r *mutationResolver) SignInByCode(ctx context.Context, input model.SignInByCodeInput) (model.SignInOrErrorPayload, error) {
-	panic(fmt.Errorf("not implemented"))
+	_, err := strconv.Atoi(input.Code)
+
+	if err != nil {
+		return &model.ErrorPayload{Message: fmt.Sprintf("Code %s should be a number", input.Code)}, nil
+	}
+
+	var data map[string]interface{}
+	err = r.DB.NewSelect().
+		Table("codes").
+		ColumnExpr("users.id as id").
+		ColumnExpr("users.phone as phone").
+		Join("JOIN users ON users.id = codes.user_id").
+		Where("users.phone = ?", input.Phone).
+		Where("codes.code = ?", input.Code).
+		Scan(ctx, &data)
+
+	if err != nil {
+		return &model.ErrorPayload{Message: fmt.Sprintf("Unable to sign in by phone %s and code %s", input.Phone, input.Code)}, nil
+	}
+
+	user := model.User{ID: int(data["id"].(int64)), Phone: data["phone"].(string)}
+
+	token, err := uuid.NewUUID()
+	values := map[string]interface{}{
+		"user_id": strconv.Itoa(user.ID),
+		"token":   token.String(),
+	}
+
+	_, err = r.DB.NewInsert().
+		Table("tokens").
+		Model(&values).
+		Exec(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return model.SignInPayload{Token: token.String(), Viewer: &model.Viewer{User: &user}}, nil
 }
 
 func (r *queryResolver) Products(ctx context.Context) ([]*model.Product, error) {
