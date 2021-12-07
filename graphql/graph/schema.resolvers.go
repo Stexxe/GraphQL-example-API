@@ -5,8 +5,10 @@ package graph
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/google/uuid"
+	"graphql/graph/auth"
 	"graphql/graph/generated"
 	"graphql/graph/model"
 	"math/rand"
@@ -107,7 +109,25 @@ func (r *queryResolver) Products(ctx context.Context) ([]*model.Product, error) 
 }
 
 func (r *queryResolver) Viewer(ctx context.Context) (*model.Viewer, error) {
-	panic(fmt.Errorf("not implemented"))
+	token := auth.ForContext(ctx)
+	if token == "" {
+		return nil, errors.New("token shouldn't be empty")
+	}
+
+	var data map[string]interface{}
+	err := r.DB.NewSelect().
+		ColumnExpr("users.id as id").
+		ColumnExpr("users.phone as phone").
+		Join("JOIN users ON users.id = tokens.user_id").
+		Table("tokens").
+		Where("tokens.token = ?", token).
+		Scan(ctx, &data)
+
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("authorization failed for token %s", token))
+	}
+	user := model.User{ID: int(data["id"].(int64)), Phone: data["phone"].(string)}
+	return &model.Viewer{User: &user}, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
