@@ -1,8 +1,13 @@
-INSERT INTO products (id, name) VALUES (1, 'Электроника Ц-430');
-INSERT INTO products (id, name) VALUES (2, 'Электроника Н-801');
-INSERT INTO products (id, name) VALUES (3, 'Фотовспышка "ЛУЧ-М"');
-INSERT INTO products (id, name) VALUES (4, 'Гарнитур "РУСЛАН"');
-INSERT INTO products (id, name) VALUES (5, 'Люстра хрустальная');
-INSERT INTO products (id, name) VALUES (6, 'Люстра "КАРУСЕЛЬ"');
-INSERT INTO products (id, name) VALUES (7, 'Бра "КОЛОБОК"');
-INSERT INTO products (id, name) VALUES (8, 'Термос-кружка');
+INSERT INTO products (name) VALUES ('Электроника Ц-430');
+INSERT INTO products (name) VALUES ('Электроника Н-801');
+INSERT INTO products (name) VALUES ('Фотовспышка "ЛУЧ-М"');
+INSERT INTO products (name) VALUES ('Гарнитур "РУСЛАН"');
+INSERT INTO products (name) VALUES ('Люстра хрустальная');
+INSERT INTO products (name) VALUES ('Люстра "КАРУСЕЛЬ"');
+INSERT INTO products (name) VALUES ('Бра "КОЛОБОК"');
+INSERT INTO products (name) VALUES ('Термос-кружка');
+
+INSERT INTO users (phone) VALUES ('799999999');
+INSERT INTO users (phone) VALUES ('79218654404');
+INSERT INTO users (phone) VALUES ('79876543210');
+INSERT INTO users (phone) VALUES ('79060000000');

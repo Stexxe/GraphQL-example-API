@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR (256)
 )
 
