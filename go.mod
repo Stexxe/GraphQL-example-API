@@ -1,4 +1,4 @@
-module graphql
+module shop-graphql
 
 go 1.16
 

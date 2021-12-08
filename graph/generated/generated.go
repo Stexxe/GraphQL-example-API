@@ -7,7 +7,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"graphql/graph/model"
+	"shop-graphql/graph/model"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -316,7 +316,7 @@ func (ec *executionContext) field_Mutation_requestSignInCode_args(ctx context.Co
 	var arg0 model.RequestSignInCodeInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNRequestSignInCodeInput2graphqlᚋgraphᚋmodelᚐRequestSignInCodeInput(ctx, tmp)
+		arg0, err = ec.unmarshalNRequestSignInCodeInput2shopᚑgraphqlᚋgraphᚋmodelᚐRequestSignInCodeInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -331,7 +331,7 @@ func (ec *executionContext) field_Mutation_signInByCode_args(ctx context.Context
 	var arg0 model.SignInByCodeInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNSignInByCodeInput2graphqlᚋgraphᚋmodelᚐSignInByCodeInput(ctx, tmp)
+		arg0, err = ec.unmarshalNSignInByCodeInput2shopᚑgraphqlᚋgraphᚋmodelᚐSignInByCodeInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -464,7 +464,7 @@ func (ec *executionContext) _Mutation_requestSignInCode(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ErrorPayload)
 	fc.Result = res
-	return ec.marshalOErrorPayload2ᚖgraphqlᚋgraphᚋmodelᚐErrorPayload(ctx, field.Selections, res)
+	return ec.marshalOErrorPayload2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐErrorPayload(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_signInByCode(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -506,7 +506,7 @@ func (ec *executionContext) _Mutation_signInByCode(ctx context.Context, field gr
 	}
 	res := resTmp.(model.SignInOrErrorPayload)
 	fc.Result = res
-	return ec.marshalNSignInOrErrorPayload2graphqlᚋgraphᚋmodelᚐSignInOrErrorPayload(ctx, field.Selections, res)
+	return ec.marshalNSignInOrErrorPayload2shopᚑgraphqlᚋgraphᚋmodelᚐSignInOrErrorPayload(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Product_id(ctx context.Context, field graphql.CollectedField, obj *model.Product) (ret graphql.Marshaler) {
@@ -608,7 +608,7 @@ func (ec *executionContext) _Query_products(ctx context.Context, field graphql.C
 	}
 	res := resTmp.([]*model.Product)
 	fc.Result = res
-	return ec.marshalOProduct2ᚕᚖgraphqlᚋgraphᚋmodelᚐProductᚄ(ctx, field.Selections, res)
+	return ec.marshalOProduct2ᚕᚖshopᚑgraphqlᚋgraphᚋmodelᚐProductᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_viewer(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -643,7 +643,7 @@ func (ec *executionContext) _Query_viewer(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*model.Viewer)
 	fc.Result = res
-	return ec.marshalNViewer2ᚖgraphqlᚋgraphᚋmodelᚐViewer(ctx, field.Selections, res)
+	return ec.marshalNViewer2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐViewer(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -784,7 +784,7 @@ func (ec *executionContext) _SignInPayload_viewer(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Viewer)
 	fc.Result = res
-	return ec.marshalNViewer2ᚖgraphqlᚋgraphᚋmodelᚐViewer(ctx, field.Selections, res)
+	return ec.marshalNViewer2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐViewer(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _User_id(ctx context.Context, field graphql.CollectedField, obj *model.User) (ret graphql.Marshaler) {
@@ -886,7 +886,7 @@ func (ec *executionContext) _Viewer_user(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalOUser2ᚖgraphqlᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalOUser2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) ___Directive_name(ctx context.Context, field graphql.CollectedField, obj *introspection.Directive) (ret graphql.Marshaler) {
@@ -2611,7 +2611,7 @@ func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) marshalNProduct2ᚖgraphqlᚋgraphᚋmodelᚐProduct(ctx context.Context, sel ast.SelectionSet, v *model.Product) graphql.Marshaler {
+func (ec *executionContext) marshalNProduct2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐProduct(ctx context.Context, sel ast.SelectionSet, v *model.Product) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2621,17 +2621,17 @@ func (ec *executionContext) marshalNProduct2ᚖgraphqlᚋgraphᚋmodelᚐProduct
 	return ec._Product(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNRequestSignInCodeInput2graphqlᚋgraphᚋmodelᚐRequestSignInCodeInput(ctx context.Context, v interface{}) (model.RequestSignInCodeInput, error) {
+func (ec *executionContext) unmarshalNRequestSignInCodeInput2shopᚑgraphqlᚋgraphᚋmodelᚐRequestSignInCodeInput(ctx context.Context, v interface{}) (model.RequestSignInCodeInput, error) {
 	res, err := ec.unmarshalInputRequestSignInCodeInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNSignInByCodeInput2graphqlᚋgraphᚋmodelᚐSignInByCodeInput(ctx context.Context, v interface{}) (model.SignInByCodeInput, error) {
+func (ec *executionContext) unmarshalNSignInByCodeInput2shopᚑgraphqlᚋgraphᚋmodelᚐSignInByCodeInput(ctx context.Context, v interface{}) (model.SignInByCodeInput, error) {
 	res, err := ec.unmarshalInputSignInByCodeInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSignInOrErrorPayload2graphqlᚋgraphᚋmodelᚐSignInOrErrorPayload(ctx context.Context, sel ast.SelectionSet, v model.SignInOrErrorPayload) graphql.Marshaler {
+func (ec *executionContext) marshalNSignInOrErrorPayload2shopᚑgraphqlᚋgraphᚋmodelᚐSignInOrErrorPayload(ctx context.Context, sel ast.SelectionSet, v model.SignInOrErrorPayload) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2656,11 +2656,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNViewer2graphqlᚋgraphᚋmodelᚐViewer(ctx context.Context, sel ast.SelectionSet, v model.Viewer) graphql.Marshaler {
+func (ec *executionContext) marshalNViewer2shopᚑgraphqlᚋgraphᚋmodelᚐViewer(ctx context.Context, sel ast.SelectionSet, v model.Viewer) graphql.Marshaler {
 	return ec._Viewer(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNViewer2ᚖgraphqlᚋgraphᚋmodelᚐViewer(ctx context.Context, sel ast.SelectionSet, v *model.Viewer) graphql.Marshaler {
+func (ec *executionContext) marshalNViewer2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐViewer(ctx context.Context, sel ast.SelectionSet, v *model.Viewer) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2951,14 +2951,14 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return graphql.MarshalBoolean(*v)
 }
 
-func (ec *executionContext) marshalOErrorPayload2ᚖgraphqlᚋgraphᚋmodelᚐErrorPayload(ctx context.Context, sel ast.SelectionSet, v *model.ErrorPayload) graphql.Marshaler {
+func (ec *executionContext) marshalOErrorPayload2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐErrorPayload(ctx context.Context, sel ast.SelectionSet, v *model.ErrorPayload) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ErrorPayload(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProduct2ᚕᚖgraphqlᚋgraphᚋmodelᚐProductᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Product) graphql.Marshaler {
+func (ec *executionContext) marshalOProduct2ᚕᚖshopᚑgraphqlᚋgraphᚋmodelᚐProductᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Product) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -2985,7 +2985,7 @@ func (ec *executionContext) marshalOProduct2ᚕᚖgraphqlᚋgraphᚋmodelᚐProd
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNProduct2ᚖgraphqlᚋgraphᚋmodelᚐProduct(ctx, sel, v[i])
+			ret[i] = ec.marshalNProduct2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐProduct(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3029,7 +3029,7 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return graphql.MarshalString(*v)
 }
 
-func (ec *executionContext) marshalOUser2ᚖgraphqlᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalOUser2ᚖshopᚑgraphqlᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

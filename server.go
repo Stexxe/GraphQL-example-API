@@ -4,12 +4,12 @@ import (
 	"database/sql"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"graphql/graph"
-	"graphql/graph/auth"
-	"graphql/graph/generated"
 	"log"
 	"net/http"
 	"os"
+	"shop-graphql/auth"
+	"shop-graphql/graph"
+	"shop-graphql/graph/generated"
 
 	"github.com/go-chi/chi"
 	"github.com/joho/godotenv"
@@ -28,7 +28,7 @@ func main() {
 		port = defaultPort
 	}
 
-	err := godotenv.Load("../.env")
+	err := godotenv.Load(".env")
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")
