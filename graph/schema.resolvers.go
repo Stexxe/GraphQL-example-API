@@ -33,8 +33,6 @@ func (r *mutationResolver) RequestSignInCode(ctx context.Context, input model.Re
 	seed := rand.NewSource(time.Now().UnixNano())
 	code := (rand.New(seed).Intn(10000) + 1000) % 9999
 
-	fmt.Println(code)
-
 	err = sms.SendSMS(input.Phone, fmt.Sprintf("Your code is %d", code))
 
 	if err != nil {

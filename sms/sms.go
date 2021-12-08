@@ -39,16 +39,18 @@ func SendSMS(phone, message string) error {
 		return err
 	}
 
-	result := values["sms"].(map[string]interface{})[phone].(map[string]interface{})
-	status := result["status"].(string)
+	status := values["status"]
 
-	if status == "OK" {
-		return nil
+	if status != "OK" {
+		return errors.New(values["status_text"].(string))
 	}
 
-	if status == "ERROR" {
+	result := values["sms"].(map[string]interface{})[phone].(map[string]interface{})
+	sendingStatus := result["status"].(string)
+
+	if sendingStatus != "OK" {
 		return errors.New(result["status_text"].(string))
 	}
 
-	return errors.New("error sending SMS")
+	return nil
 }
