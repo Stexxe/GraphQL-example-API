@@ -10,4 +10,4 @@ cat ./db/seed.sql | psql postgres://staging:staging@localhost:7232
 go run .
 ```
 
-To use [SMS service](https://sms.ru/) specify the value for `SMS_API_ID` variable in the `.env` file.
+To use the real [SMS service](https://sms.ru/) specify the value for `SMS_API_ID` variable in the `.env` file.
