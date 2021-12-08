@@ -10,6 +10,7 @@ import (
 	"shop-graphql/auth"
 	"shop-graphql/graph"
 	"shop-graphql/graph/generated"
+	"shop-graphql/repository"
 
 	"github.com/go-chi/chi"
 	"github.com/joho/godotenv"
@@ -45,7 +46,11 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(auth.Middleware())
 
-	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{DB: db}}))
+	srv := handler.NewDefaultServer(
+		generated.NewExecutableSchema(
+			generated.Config{Resolvers: &graph.Resolver{DB: db, Repository: &repository.Repository{DB: db}}},
+		),
+	)
 
 	router.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", srv)
