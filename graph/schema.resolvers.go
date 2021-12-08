@@ -8,9 +8,11 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"os"
 	"shop-graphql/auth"
 	generated1 "shop-graphql/graph/generated"
 	"shop-graphql/graph/model"
+	"shop-graphql/sms"
 	"strconv"
 	"time"
 
@@ -36,7 +38,11 @@ func (r *mutationResolver) RequestSignInCode(ctx context.Context, input model.Re
 	seed := rand.NewSource(time.Now().UnixNano())
 	code := rand.New(seed).Intn(10000)
 
-	fmt.Println(code)
+	err = sms.SendSMS(input.Phone, fmt.Sprintf("Your code is %d", code))
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Cannot send SMS with code %d: %s\n", code, err)
+	}
 
 	values := map[string]interface{}{
 		"user_id": strconv.FormatInt(userId, 10),
