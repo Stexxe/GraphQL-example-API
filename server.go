@@ -48,7 +48,7 @@ func main() {
 
 	srv := handler.NewDefaultServer(
 		generated.NewExecutableSchema(
-			generated.Config{Resolvers: &graph.Resolver{DB: db, Repository: &repository.Repository{DB: db}}},
+			generated.Config{Resolvers: &graph.Resolver{Repository: &repository.Repository{DB: db}}},
 		),
 	)
 
